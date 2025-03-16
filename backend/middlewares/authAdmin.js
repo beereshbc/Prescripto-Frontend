@@ -11,7 +11,10 @@ const authAdmin = async (req, res, next) => {
     const decodedToken = await jwt.verify(atoken, process.env.JWT_SECRET);
 
     if (decodedToken !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD) {
-      return res.json({ success: false, message: "Un-Authorized login" });
+      return res.json({
+        success: false,
+        message: "Un-Authorized login Your not Admin",
+      });
     }
 
     next(); // <-----This callback is must
