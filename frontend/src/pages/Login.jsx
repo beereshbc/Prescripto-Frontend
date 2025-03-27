@@ -1,19 +1,40 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [state, setState] = useState("Sign Up");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const { backendUrl } = useContext(AppContext);
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    console.log(e.target.name);
+  const submitHandler = async (event) => {
+    try {
+      event.preventDefault();
+      const { data } = await axios.post(backendUrl + "/api/user/register", {
+        email,
+        password,
+        name,
+      });
+      if (data.success) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+    console.log(event.target.name);
   };
 
   return (
-    <form onSubmit={submitHandler} className="flex min-h-[80vh] items-center ">
-      <div className="border min-w-[50vh] border-gray-200 shadow-xl items-center justify-center mx-auto p-10 bg-white rounded-lg">
+    <form
+      onSubmit={submitHandler}
+      className="flex min-h-[80vh] items-center flex-wrap max-h-screen overflow-auto justify-center w-full max-w-sm min-w-[50vh]"
+    >
+      <div className="border min-w-[40vh] border-gray-200 shadow-xl w-full items-center justify-center mx-auto p-10 bg-white rounded-lg">
         <p className="text-gray-900 font-medium text-2xl mb-1">
           {state === "Sign Up" ? "Create Account" : "Login"}
         </p>
