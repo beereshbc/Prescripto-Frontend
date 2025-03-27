@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [state, setState] = useState("Sign Up");
@@ -9,6 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const { backendUrl } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const submitHandler = async (event) => {
     try {
@@ -23,6 +26,9 @@ const Login = () => {
       } else {
         toast.error(data.message);
       }
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       toast.error(error.message);
     }
@@ -32,7 +38,7 @@ const Login = () => {
   return (
     <form
       onSubmit={submitHandler}
-      className="flex min-h-[80vh] items-center flex-wrap max-h-screen overflow-auto justify-center w-full max-w-sm min-w-[50vh]"
+      className="flex min-h-[80vh] items-center flex-wrap max-h-screen overflow-auto mx-auto max-w-[60vh]"
     >
       <div className="border min-w-[40vh] border-gray-200 shadow-xl w-full items-center justify-center mx-auto p-10 bg-white rounded-lg">
         <p className="text-gray-900 font-medium text-2xl mb-1">

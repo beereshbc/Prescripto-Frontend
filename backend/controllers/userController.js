@@ -35,4 +35,10 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { registerUser };
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+  } catch (error) {}
+};
+
+export { registerUser, loginUser };
