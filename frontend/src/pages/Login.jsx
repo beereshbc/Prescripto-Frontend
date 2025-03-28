@@ -9,31 +9,61 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const { backendUrl } = useContext(AppContext);
+  const { backendUrl, setToken, token } = useContext(AppContext);
 
   const navigate = useNavigate();
 
   const submitHandler = async (event) => {
     try {
       event.preventDefault();
-      const { data } = await axios.post(backendUrl + "/api/user/register", {
-        email,
-        password,
-        name,
-      });
-      if (data.success) {
-        toast.success(data.message);
+      if (state === "Sign Up") {
+        const { data } = await axios.post(backendUrl + "/api/user/register", {
+          email,
+          password,
+          name,
+        });
+
+        if (data.success) {
+          toast.success(data.message);
+          localStorage.setItem("token", data.token);
+          setToken(data.token);
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        } else {
+          toast.error(data.message);
+        }
       } else {
-        toast.error(data.message);
+        const { data } = await axios.post(backendUrl + "/api/user/login", {
+          email,
+          password,
+        });
+
+        if (data.success) {
+          toast.success(data.message);
+          localStorage.setItem("token", data.token);
+          setToken(data.token);
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        } else {
+          toast.error(data.message);
+        }
       }
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
     } catch (error) {
       toast.error(error.message);
     }
     console.log(event.target.name);
   };
+
+  // useState(() => {
+  //   setTimeout(() => {
+  //     navigate("/");
+  //   }, 2000);
+  //   if (token) {
+
+  //   }
+  // }, [token]);
 
   return (
     <form

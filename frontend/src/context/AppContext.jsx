@@ -8,13 +8,11 @@ export const AppContext = createContext();
 const AppContectProvider = (props) => {
   const currency = "₹";
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-  const [doctors, setDoctors] = useState([]);
 
-  const value = {
-    doctors,
-    currency,
-    backendUrl,
-  };
+  const [doctors, setDoctors] = useState([]);
+  const [token, setToken] = useState(
+    localStorage.getItem("token") ? localStorage.getItem("token") : ""
+  );
 
   const getDoctorsList = async () => {
     try {
@@ -32,6 +30,13 @@ const AppContectProvider = (props) => {
     getDoctorsList();
   }, []);
 
+  const value = {
+    doctors,
+    currency,
+    backendUrl,
+    token,
+    setToken,
+  };
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
   );

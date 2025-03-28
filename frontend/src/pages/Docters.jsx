@@ -26,7 +26,7 @@ const Docters = () => {
       <div className="flex flex-col sm:flex-row text-start gap-5 mt-5">
         <button
           onClick={() => setShowFilter((prev) => !prev)}
-          className={`py-1 px-2 border w-16 mx-4 rounded text-sm ${
+          className={`py-1 px-2 border w-16 mx-4 sm:hidden rounded text-sm ${
             showFilter ? "bg-primary text-white" : ""
           }`}
         >
