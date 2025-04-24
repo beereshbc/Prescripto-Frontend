@@ -16,7 +16,7 @@ const Appointment = () => {
 
   const fetchDocInfo = () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
-    setDocInfo(docInfo);
+    setDocInfo(docInfo);  
   };
 
   const fetchAvailableSlots = async () => {

@@ -15,12 +15,12 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between py-4 mb-5 text-sm border-b border-b-gray-400 ">
-      <img
+      <p
         onClick={() => navigate("/")}
-        className="w-44 cursor-pointer"
-        src={assets.logo}
-        alt=""
-      />
+        className=" cursor-pointer text-2xl text-primary font-medium"
+      >
+        Vaidhya-Bandhu
+      </p>
       <ul className="hidden md:flex gap-5  items-start font-medium">
         <NavLink to={"/"}>
           <li className="py-1">Home</li>

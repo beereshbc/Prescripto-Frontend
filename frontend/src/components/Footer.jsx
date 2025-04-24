@@ -10,12 +10,12 @@ const Footer = () => {
       <div className="flex p-16 gap-10   ">
         {/* --------- left section ----------- */}
         <div className="w-1/2 flex flex-col">
-          <img
+          <p
             onClick={() => navigate("/")}
-            className="w-40 mb-8 cursor-pointer"
-            src={assets.logo}
-            alt=""
-          />
+            className=" text-primary font-medium mb-8 cursor-pointer"
+          >
+            VaidhyaBandhu
+          </p>
           <p className="text-sm text-start text-gray-500 font-semibold">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text

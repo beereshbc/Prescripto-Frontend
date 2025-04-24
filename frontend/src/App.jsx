@@ -11,6 +11,7 @@ import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
+import Gemini from "./components/Gemini";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/appointment/:docId" element={<Appointment />} />
       </Routes>
+      <Gemini />
       <Footer />
     </div>
   );
